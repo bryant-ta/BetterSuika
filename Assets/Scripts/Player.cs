@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     [SerializeField] float _moveSpeed = 5f;
-    [SerializeField] float _bound;
+    [SerializeField] float _leftBound;
+    [SerializeField] float _rightBound;
 
     [SerializeField] Guy _heldGuy;
     [SerializeField] Transform _heldGuyLocation;
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour {
         transform.Translate(movement);
 
         // Keep in bounds
-        float positionX = Mathf.Clamp(transform.position.x, -_bound, _bound);
+        float positionX = Mathf.Clamp(transform.position.x, _leftBound, _rightBound);
         transform.position = new Vector3(positionX, transform.position.y, transform.position.z);
 
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -39,6 +40,5 @@ public class Player : MonoBehaviour {
         _heldGuy = GameManager.Instance.GetNextGuy();
         _heldGuy.transform.SetParent(_heldGuyLocation);
         _heldGuy.transform.localPosition = Vector3.zero;
-        
     }
 }
