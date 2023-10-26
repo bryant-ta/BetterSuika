@@ -10,6 +10,7 @@ public class Guy : MonoBehaviour {
 
     bool _isCombined; // used so combine func doesnt get called twice, from the two guys involved in collision
     public bool Haslanded; // used when checking out of bounds
+    public Action OnLanded;
 
     void Awake() { _rb = GetComponent<Rigidbody2D>(); }
 
@@ -43,9 +44,15 @@ public class Guy : MonoBehaviour {
     public void OnCollisionEnter2D(Collision2D col) {
         if (col.collider.TryGetComponent(out Guy guy)) {
             TryCombine(guy);
-            Haslanded = true;
+            Landed();
         } else if (col.collider.CompareTag("Floor")) {
-            Haslanded = true;
+            Landed();
         }
+    }
+
+    void Landed() {
+        if (Haslanded) return;
+        Haslanded = true;
+        OnLanded?.Invoke();
     }
 }

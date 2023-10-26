@@ -9,11 +9,21 @@ public class Player : MonoBehaviour {
     [SerializeField] Guy _heldGuy;
     [SerializeField] Transform _heldGuyLocation;
 
+    bool _canInput;
+    bool _canDrop;
+
+    Guy _lastHeldGuy;
+
     void Start() {
         ReadyNextGuy();
+
+        _canInput = true;
+        _canDrop = true;
     }
 
     void Update() {
+        if (!_canInput) return;
+        
         // Movement
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         Vector3 movement = new Vector3(horizontalInput, 0, 0) * _moveSpeed * Time.deltaTime;
@@ -23,12 +33,16 @@ public class Player : MonoBehaviour {
         float positionX = Mathf.Clamp(transform.position.x, _leftBound, _rightBound);
         transform.position = new Vector3(positionX, transform.position.y, transform.position.z);
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (_canDrop && Input.GetKey(KeyCode.Space)) {
             DropGuy();
         }
     }
 
     public void DropGuy() {
+        _lastHeldGuy = _heldGuy;
+        _canDrop = false;
+        _lastHeldGuy.OnLanded += AllowDrop;
+        
         _heldGuy.Drop();
         _heldGuy.transform.SetParent(null);
         _heldGuy = null;
@@ -40,5 +54,13 @@ public class Player : MonoBehaviour {
         _heldGuy = GameManager.Instance.GetNextGuy();
         _heldGuy.transform.SetParent(_heldGuyLocation);
         _heldGuy.transform.localPosition = Vector3.zero;
+    }
+
+    void AllowDrop() {
+        _canDrop = true;
+        if (_lastHeldGuy) {
+            _lastHeldGuy.OnLanded -= AllowDrop;
+            _lastHeldGuy = null;
+        }
     }
 }
