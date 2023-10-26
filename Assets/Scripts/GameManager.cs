@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
+    [SerializeField] Player _player;
+
     // Guys
     Guy _nextGuy;
     [SerializeField] Transform _nextGuyLocation;
@@ -12,11 +14,13 @@ public class GameManager : MonoBehaviour {
     [SerializeField] List<GameObjectWeight> _guyData = new();
     RollTable<GameObject> _guyRoller = new();
 
+    [Header("Debug")]
+    [SerializeField] bool _debugMode;
+    [SerializeField] List<GameObjectWeight> _debugGuyData = new();
+
     // Scoring
     public int Score { get; private set; }
     List<int> _highScores = new();
-
-    [SerializeField] Player _player;
 
     void Awake() {
         if (Instance != null && Instance != this) {
@@ -29,8 +33,14 @@ public class GameManager : MonoBehaviour {
         //   Could replace with storing Guy directly and creating objects with factory
         _guyData.Sort((a, b) => a.obj.GetComponent<Guy>().GuyId.CompareTo(b.obj.GetComponent<Guy>().GuyId));
 
-        foreach (GameObjectWeight entry in _guyData) {
-            _guyRoller.Add(entry.obj, entry.weight);
+        if (_debugMode) {
+            foreach (GameObjectWeight entry in _debugGuyData) {
+                _guyRoller.Add(entry.obj, entry.weight);
+            }
+        } else {
+            foreach (GameObjectWeight entry in _guyData) {
+                _guyRoller.Add(entry.obj, entry.weight);
+            }
         }
 
         // Init high scores list with 0 values
@@ -51,8 +61,7 @@ public class GameManager : MonoBehaviour {
         
         Score = 0;
         UIManager.Instance.UpdateScoreText(0);
-        _player.ReadyNextGuy();
-        _player.ReadyNextGuy(); // Do twice to load up two guys
+        _player.ResetState();
     }
 
     #region Guys

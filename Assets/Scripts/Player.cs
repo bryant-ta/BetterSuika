@@ -63,4 +63,14 @@ public class Player : MonoBehaviour {
             _lastHeldGuy = null;
         }
     }
+
+    // prob subscribe to GameManager end game event
+    public void ResetState() {
+        AllowDrop();
+        _canInput = true;
+        
+        ReadyNextGuy();
+        ReadyNextGuy(); // Do twice to guarantee load up of two guys
+        
+    }
 }
