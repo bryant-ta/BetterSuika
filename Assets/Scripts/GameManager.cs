@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour {
         }
         
         Score = 0;
+        UIManager.Instance.UpdateScoreText(0);
         _player.ReadyNextGuy();
         _player.ReadyNextGuy(); // Do twice to load up two guys
     }

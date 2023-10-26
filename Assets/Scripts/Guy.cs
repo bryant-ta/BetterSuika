@@ -9,12 +9,12 @@ public class Guy : MonoBehaviour {
     Rigidbody2D _rb;
 
     bool _isCombined; // used so combine func doesnt get called twice, from the two guys involved in collision
-    public bool Destroyed; // used to differientiate between destroyed vs. objects actually leaving Play Area, feels janky tho maybe timing issue
+    public bool Haslanded; // used when checking out of bounds
 
     void Awake() { _rb = GetComponent<Rigidbody2D>(); }
 
     // Return true if successfully combined
-    public void Combine(Guy otherGuy) {
+    public void TryCombine(Guy otherGuy) {
         if (GuyId == otherGuy.GuyId) {   // combine with same Guy type
             if (!otherGuy._isCombined) { // below happens once only
                 _isCombined = true;
@@ -42,11 +42,10 @@ public class Guy : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D col) {
         if (col.collider.TryGetComponent(out Guy guy)) {
-            Combine(guy);
+            TryCombine(guy);
+            Haslanded = true;
+        } else if (col.collider.CompareTag("Floor")) {
+            Haslanded = true;
         }
-    }
-
-    public void OnDestroy() {
-        Destroyed = true;
     }
 }
