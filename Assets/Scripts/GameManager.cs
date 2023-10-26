@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] List<GameObjectWeight> _guyData = new();
 	RollTable<GameObject> _guyRoller = new();
 
+	// Scoring
+	public int Score { get; private set; }
+	List<int> _highScores = new();
+
 	void Awake() {
 		if (Instance != null && Instance != this) {
 			Destroy(gameObject);
@@ -25,6 +29,9 @@ public class GameManager : MonoBehaviour {
 		foreach (GameObjectWeight entry in _guyData) {
 			_guyRoller.Add(entry.obj, entry.weight);
 		}
+		
+		// Init high scores list with 0 values
+		_highScores.AddRange(new List<int>() {0,0,0});
 	}
 
 	// Generate next Guy for player to drop
@@ -45,5 +52,25 @@ public class GameManager : MonoBehaviour {
 	// Look up next tier of guy when guys combine
 	public GameObject LookUpHigherGuyObj(int guyId) {
 		return guyId + 1 < _guyData.Count ? _guyData[guyId + 1].obj : null;
+	}
+
+	public void AddScore(int val) {
+		Score += val;
+		UIManager.Instance.UpdateScoreText(Score);
+	}
+
+	public void TrySaveHighScore(int score) {
+		for (int i = 0; i < _highScores.Count; i++) {
+			if (score > _highScores[i]) {
+				_highScores.Insert(i, score);
+				break;
+			}
+		}
+
+		if (_highScores.Count > 3) { // clean up lowest score
+			_highScores.RemoveAt(3);
+		}
+
+		UIManager.Instance.UpdateHighScoresText(_highScores);
 	}
 }
