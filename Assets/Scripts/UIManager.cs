@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 	public static UIManager Instance { get; private set; }
@@ -11,6 +10,8 @@ public class UIManager : MonoBehaviour {
 	[SerializeField] TextMeshProUGUI _firstPlaceScoreText;
 	[SerializeField] TextMeshProUGUI _secondPlaceScoreText;
 	[SerializeField] TextMeshProUGUI _thirdPlaceScoreText;
+	
+	[SerializeField] GameObject _pauseMenuPanel;
 	
 	void Awake() {
 		if (Instance != null && Instance != this) {
@@ -30,5 +31,19 @@ public class UIManager : MonoBehaviour {
 		_firstPlaceScoreText.text = highScores[0].ToString();
 		_secondPlaceScoreText.text = highScores[1].ToString();
 		_thirdPlaceScoreText.text = highScores[2].ToString();
+	}
+
+	// returns active state of pause menu
+	public bool TogglePauseMenu() {
+		_pauseMenuPanel.SetActive(!_pauseMenuPanel.activeSelf);
+		return _pauseMenuPanel.activeSelf;
+	}
+
+	public void OnRestartButtonClicked() {
+		GameManager.Instance.ResetGame();
+	}
+
+	public void OnExitButtonClicked() {
+		Application.Quit();
 	}
 }

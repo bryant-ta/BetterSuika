@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
     // Scoring
     public int Score { get; private set; }
     List<int> _highScores = new();
+    HighScoreManager _hsm = new();
 
     void Awake() {
         if (Instance != null && Instance != this) {
@@ -42,9 +43,10 @@ public class GameManager : MonoBehaviour {
                 _guyRoller.Add(entry.obj, entry.weight);
             }
         }
+    }
 
-        // Init high scores list with 0 values
-        _highScores.AddRange(new List<int>() {0, 0, 0});
+    void Start() {
+        LoadHighScores();
     }
 
     public void LoseGame() {
@@ -93,7 +95,7 @@ public class GameManager : MonoBehaviour {
         UIManager.Instance.UpdateScoreText(Score);
     }
 
-    public void TrySaveHighScore(int score) {
+    void TrySaveHighScore(int score) {
         for (int i = 0; i < _highScores.Count; i++) {
             if (score > _highScores[i]) {
                 _highScores.Insert(i, score);
@@ -103,8 +105,23 @@ public class GameManager : MonoBehaviour {
 
         if (_highScores.Count > 3) { // clean up lowest score
             _highScores.RemoveAt(3);
+            
+            // Write to disk
+            _hsm.SaveHighScore(_highScores);
         }
 
+        UIManager.Instance.UpdateHighScoresText(_highScores);
+    }
+
+    // Inits high scores list with 0 values if no previous high scores files
+    void LoadHighScores() {
+        List<int> highScores = _hsm.LoadHighScores();
+        if (highScores == null) {
+            _highScores.AddRange(new List<int>() {0, 0, 0});
+        } else {
+            _highScores = highScores;
+        }
+        
         UIManager.Instance.UpdateHighScoresText(_highScores);
     }
 

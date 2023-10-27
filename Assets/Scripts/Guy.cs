@@ -23,13 +23,14 @@ public class Guy : MonoBehaviour {
                 // Create next higher Guy
                 GameObject higherGuyObj = GameManager.Instance.LookUpHigherGuyObj(GuyId);
                 if (higherGuyObj != null) {
-                    GameObject guyObj = Instantiate(GameManager.Instance.LookUpHigherGuyObj(GuyId), transform.position, transform.rotation);
+                    Vector3 spawnPos = (transform.position + otherGuy.transform.position) / 2; // spawn at middle point
+                    GameObject guyObj = Instantiate(GameManager.Instance.LookUpHigherGuyObj(GuyId), spawnPos, transform.rotation);
                     guyObj.GetComponent<Collider2D>().enabled = true;
                     guyObj.GetComponent<Rigidbody2D>().gravityScale = 1f;
                 }
                 
                 // Gain points
-                GameManager.Instance.AddScore(_scoreValue);
+                GameManager.Instance.AddScore(_scoreValue * 2); // adding both Guy scores
             }
             
             Destroy(gameObject);

@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     [SerializeField] float _moveSpeed = 5f;
-    [SerializeField] float _leftBound;
-    [SerializeField] float _rightBound;
+    [SerializeField] float _leftBoundBase;
+    [SerializeField] float _rightBoundBase;
+    float _guyBoundOffset; // based on length of held Guy
 
     [SerializeField] Guy _heldGuy;
-    [SerializeField] Transform _heldGuyLocation;
 
     bool _canInput;
     bool _canDrop;
@@ -22,6 +22,10 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            _canInput = !UIManager.Instance.TogglePauseMenu();
+        }
+        
         if (!_canInput) return;
         
         // Movement
@@ -30,10 +34,10 @@ public class Player : MonoBehaviour {
         transform.Translate(movement);
 
         // Keep in bounds
-        float positionX = Mathf.Clamp(transform.position.x, _leftBound, _rightBound);
+        float positionX = Mathf.Clamp(transform.position.x, _leftBoundBase + _guyBoundOffset, _rightBoundBase - _guyBoundOffset);
         transform.position = new Vector3(positionX, transform.position.y, transform.position.z);
 
-        if (_canDrop && Input.GetKey(KeyCode.Space)) {
+        if (_canDrop && Input.GetButton("Fire1")) {
             DropGuy();
         }
     }
@@ -52,8 +56,9 @@ public class Player : MonoBehaviour {
 
     public void ReadyNextGuy() {
         _heldGuy = GameManager.Instance.GetNextGuy();
-        _heldGuy.transform.SetParent(_heldGuyLocation);
+        _heldGuy.transform.SetParent(transform);
         _heldGuy.transform.localPosition = Vector3.zero;
+        _guyBoundOffset = _heldGuy.GetComponent<CircleCollider2D>().radius;
     }
 
     void AllowDrop() {
@@ -71,6 +76,5 @@ public class Player : MonoBehaviour {
         
         ReadyNextGuy();
         ReadyNextGuy(); // Do twice to guarantee load up of two guys
-        
     }
 }
