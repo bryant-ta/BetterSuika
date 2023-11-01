@@ -12,12 +12,28 @@ PrefabInstance:
       value: Guy10
       objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412400, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855894075239412400, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855894075239412400, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -502558124, guid: f98ea36ed4f43384fa5222aa37170c38, type: 3}
+      objectReference: {fileID: 1310928551, guid: d617bbf92362bd84b9d8f81856b7ca8d, type: 3}
+    - target: {fileID: 1855894075239412400, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412401, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_Radius
       value: 0.5032111
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855894075239412401, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412401, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_Offset.y

@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
     public Guy GetNextGuy() {
         // first time generation
         if (_nextGuy == null) {
-            GameObject firstGuyObj = Instantiate(_guyRoller.GetRandom(), _nextGuyLocation);
+            GameObject firstGuyObj = Instantiate(_guyRoller.GetRandom(), _nextGuyLocation.position, Quaternion.identity);
             _nextGuy = firstGuyObj.GetComponent<Guy>();
         }
 

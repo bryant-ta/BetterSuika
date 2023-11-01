@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1855894075239412398, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412399, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_Name
       value: Guy3
@@ -14,10 +18,18 @@ PrefabInstance:
     - target: {fileID: 1855894075239412400, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1979624386, guid: d617bbf92362bd84b9d8f81856b7ca8d, type: 3}
+      objectReference: {fileID: 21300000, guid: a396edff2e243a94eafe20836b7169a1, type: 3}
+    - target: {fileID: 1855894075239412400, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412401, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_Radius
       value: 0.48555017
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855894075239412401, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412401, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_Offset.x
@@ -41,15 +53,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412403, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412403, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412403, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412403, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -95,5 +107,112 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1855894075239412401, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
+--- !u!1 &2773019331710291373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1855894075239412399, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
+  m_PrefabInstance: {fileID: 4592206760294989570}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &1967500208817593706
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2773019331710291373}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8333333, y: 0.8333333}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.14666668, y: -0.34833333}
+      - {x: 0.175, y: -0.33833334}
+      - {x: 0.22166668, y: -0.315}
+      - {x: 0.23333333, y: -0.30833334}
+      - {x: 0.24833333, y: -0.29833335}
+      - {x: 0.26333335, y: -0.28666666}
+      - {x: 0.29666668, y: -0.25333333}
+      - {x: 0.30666667, y: -0.235}
+      - {x: 0.31833333, y: -0.21166667}
+      - {x: 0.32333335, y: -0.17666668}
+      - {x: 0.32333335, y: -0.15166667}
+      - {x: 0.31666666, y: -0.065000005}
+      - {x: 0.31, y: 0.02}
+      - {x: 0.30833334, y: 0.021666666}
+      - {x: 0.30833334, y: 0.09}
+      - {x: 0.31, y: 0.09166667}
+      - {x: 0.32333335, y: 0.17}
+      - {x: 0.33666667, y: 0.22833334}
+      - {x: 0.33666667, y: 0.24000001}
+      - {x: 0.33333334, y: 0.25166667}
+      - {x: 0.31333333, y: 0.26500002}
+      - {x: 0.29833335, y: 0.26333335}
+      - {x: 0.26833335, y: 0.28166667}
+      - {x: 0.24666667, y: 0.28666666}
+      - {x: 0.21833333, y: 0.29333335}
+      - {x: 0.13833334, y: 0.30666667}
+      - {x: 0.13000001, y: 0.31333333}
+      - {x: 0.11, y: 0.32333335}
+      - {x: 0.085, y: 0.33}
+      - {x: 0.053333335, y: 0.32833335}
+      - {x: 0.03666667, y: 0.33666667}
+      - {x: 0.02, y: 0.34166667}
+      - {x: 0.01, y: 0.34333333}
+      - {x: -0.016666668, y: 0.34333333}
+      - {x: -0.04, y: 0.33833334}
+      - {x: -0.05666667, y: 0.32666668}
+      - {x: -0.07333334, y: 0.32833335}
+      - {x: -0.095, y: 0.32833335}
+      - {x: -0.12166667, y: 0.32500002}
+      - {x: -0.14, y: 0.31333333}
+      - {x: -0.16666667, y: 0.30333334}
+      - {x: -0.23, y: 0.2916667}
+      - {x: -0.25666666, y: 0.285}
+      - {x: -0.275, y: 0.27833334}
+      - {x: -0.29666668, y: 0.26833335}
+      - {x: -0.31333333, y: 0.26333335}
+      - {x: -0.32833335, y: 0.255}
+      - {x: -0.335, y: 0.24333334}
+      - {x: -0.335, y: 0.21666667}
+      - {x: -0.33, y: 0.2}
+      - {x: -0.315, y: 0.12666667}
+      - {x: -0.31333333, y: 0.108333334}
+      - {x: -0.31166667, y: 0.07333334}
+      - {x: -0.31166667, y: 0.05}
+      - {x: -0.31333333, y: 0.005}
+      - {x: -0.315, y: -0.021666666}
+      - {x: -0.31833333, y: -0.07333334}
+      - {x: -0.32, y: -0.09833334}
+      - {x: -0.32333335, y: -0.175}
+      - {x: -0.32, y: -0.205}
+      - {x: -0.30666667, y: -0.23666668}
+      - {x: -0.28833333, y: -0.26000002}
+      - {x: -0.26500002, y: -0.28166667}
+      - {x: -0.25166667, y: -0.29333335}
+      - {x: -0.23166667, y: -0.30666667}
+      - {x: -0.18833333, y: -0.32833335}
+      - {x: -0.16, y: -0.34}
+      - {x: -0.11666667, y: -0.35666668}
+      - {x: -0.08833334, y: -0.36333334}
+      - {x: -0.065000005, y: -0.365}
+      - {x: -0.048333336, y: -0.36666667}
+      - {x: -0.01, y: -0.36833334}
+      - {x: 0.01, y: -0.36833334}
+      - {x: 0.041666668, y: -0.36666667}
+      - {x: 0.086666666, y: -0.36333334}
+      - {x: 0.10333334, y: -0.35833335}

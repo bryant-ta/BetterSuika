@@ -58,7 +58,7 @@ public class Player : MonoBehaviour {
         _heldGuy = GameManager.Instance.GetNextGuy();
         _heldGuy.transform.SetParent(transform);
         _heldGuy.transform.localPosition = Vector3.zero;
-        _guyBoundOffset = _heldGuy.GetComponent<CircleCollider2D>().radius * _heldGuy.transform.localScale.x;
+        // _guyBoundOffset = _heldGuy.GetComponent<CircleCollider2D>().radius * _heldGuy.transform.localScale.x;
     }
 
     void AllowDrop() {
