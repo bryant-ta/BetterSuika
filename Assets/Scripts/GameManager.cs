@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour {
     RollTable<GameObject> _guyRoller = new();
 
     [Header("Debug")]
-    [SerializeField] bool _debugMode;
     [SerializeField] List<GameObjectWeight> _debugGuyData = new();
 
     // Scoring
@@ -37,7 +36,7 @@ public class GameManager : MonoBehaviour {
         //   Could replace with storing Guy directly and creating objects with factory
         _guyData.Sort((a, b) => a.obj.GetComponent<Guy>().GuyId.CompareTo(b.obj.GetComponent<Guy>().GuyId));
 
-        if (_debugMode) {
+        if (Settings.Instance.DebugMode) {
             foreach (GameObjectWeight entry in _debugGuyData) {
                 _guyRoller.Add(entry.obj, entry.weight);
             }

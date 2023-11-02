@@ -14,9 +14,11 @@ public class Player : MonoBehaviour {
     bool _canDrop;
 
     AudioSource _dropAudio;
-
+    Camera _mainCamera;
+    
     void Awake() {
         _dropAudio = GetComponent<AudioSource>();
+        _mainCamera = Camera.main;
     }
 
     void Start() {
@@ -34,10 +36,15 @@ public class Player : MonoBehaviour {
         if (!_canInput) return;
         
         // Movement
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        Vector3 movement = new Vector3(horizontalInput, 0, 0) * _moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
-
+        if (Settings.Instance.UseMouse) { // Mouse movement
+            Vector3 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            transform.localPosition = new Vector3(mousePosition.x, transform.localPosition.y, transform.localPosition.z);
+        } else { // Keyboard movement
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
+            Vector3 movement = new Vector3(horizontalInput, 0, 0) * _moveSpeed * Time.deltaTime;
+            transform.Translate(movement);
+        }
+        
         // Keep in bounds
         float positionX = Mathf.Clamp(transform.position.x, _leftBoundBase + _guyBoundOffset, _rightBoundBase - _guyBoundOffset);
         transform.position = new Vector3(positionX, transform.position.y, transform.position.z);
