@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour {
 
     [SerializeField] GameObject _pauseMenuPanel;
     [SerializeField] GameObject _settingsPanel;
+    
+    [SerializeField] GameObject _lostGamePanel;
+    [SerializeField] TextMeshProUGUI _finalScoreText;
 
     void Awake() {
         if (Instance != null && Instance != this) {
@@ -32,10 +35,16 @@ public class UIManager : MonoBehaviour {
         _thirdPlaceScoreText.text = highScores[2].ToString();
     }
 
-    // returns active state of pause menu
+    public void ToggleLostGamePanel() {
+        _lostGamePanel.SetActive(true);
+        _finalScoreText.text = _scoreText.text;
+    }
+
     public void TogglePauseMenu() {
         _pauseMenuPanel.SetActive(!_pauseMenuPanel.activeSelf);
-        GameManager.Instance.Player.CanInput = !_pauseMenuPanel.activeSelf;
+        if (!GameManager.Instance.LostGame) {
+            GameManager.Instance.Player.CanInput = !_pauseMenuPanel.activeSelf;
+        }
     }
     
     public void OnReturnButtonClicked() {
@@ -43,6 +52,7 @@ public class UIManager : MonoBehaviour {
     }
     public void OnRestartButtonClicked() {
         _pauseMenuPanel.SetActive(false);
+        _lostGamePanel.SetActive(false);
         GameManager.Instance.ResetGame();
     }
     public void OnSettingsButtonClicked() {

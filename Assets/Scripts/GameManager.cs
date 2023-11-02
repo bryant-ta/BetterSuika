@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
 
     public Player Player;
 
+    public bool LostGame;
+
     // Guys
     Guy _nextGuy;
     [SerializeField] Transform _nextGuyLocation;
@@ -54,9 +56,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoseGame() {
-        print("LOST");
-        TrySaveHighScore(Score); 
-        ResetGame();
+        UIManager.Instance.ToggleLostGamePanel();
+        TrySaveHighScore(Score);
+        Player.CanInput = false;
+        LostGame = true;
     }
 
     public void ResetGame() {
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour {
         Score = 0;
         UIManager.Instance.UpdateScoreText(0);
         Player.ResetState();
+        LostGame = false;
     }
 
     #region Guys
