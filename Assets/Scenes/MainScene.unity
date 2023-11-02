@@ -1749,6 +1749,8 @@ MonoBehaviour:
     weight: 0
   - obj: {fileID: 2773019331710291373, guid: 0bb548df9074b604f827dab87589ca79, type: 3}
     weight: 0
+  - obj: {fileID: 2773019331710291373, guid: eb94ac9c470e6754fbe847e5b6db9c38, type: 3}
+    weight: 0
   _debugGuyData:
   - obj: {fileID: 2773019331710291373, guid: b2be3653bc7e9a045a2eb64c4c1d66aa, type: 3}
     weight: 1
@@ -1779,8 +1781,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e4093b64956bb26408eb6f4bbc0c7163, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.234
+  m_PlayOnAwake: 0
+  m_Volume: 0.063
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1876,13 +1878,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1ef8543903d70f948a0e2d6294551a90, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.844
   m_Pitch: 1.2
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 150
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

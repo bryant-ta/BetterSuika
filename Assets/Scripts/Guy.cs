@@ -8,8 +8,8 @@ public class Guy : MonoBehaviour {
 
     Rigidbody2D _rb;
 
-    bool _isCombined; // used so combine func doesnt get called twice, from the two guys involved in collision
-    public bool Haslanded; // used when checking out of bounds
+    bool _isCombined;                            // used so combine func doesnt get called twice, from the two guys involved in collision
+    public bool Haslanded { get; private set; } // used when checking out of bounds
     public Action OnLanded;
 
     void Awake() {
