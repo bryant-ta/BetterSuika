@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] Player _player;
+    public Player Player;
 
     // Guys
     Guy _nextGuy;
@@ -23,7 +23,9 @@ public class GameManager : MonoBehaviour {
     HighScoreManager _hsm = new();
     
     // Sound
-    public AudioSource CombineSound; // TEMP: placed here since Guy gets destroyed -> stops combine sound
+    public AudioSource MusicSound;
+    public AudioSource DropSound;
+    public AudioSource CombineSound;
 
     void Awake() {
         if (Instance != null && Instance != this) {
@@ -35,7 +37,9 @@ public class GameManager : MonoBehaviour {
         // Ensure guy data is sorted since LookUpHigherGuyObj() relies on index position
         //   Could replace with storing Guy directly and creating objects with factory
         _guyData.Sort((a, b) => a.obj.GetComponent<Guy>().GuyId.CompareTo(b.obj.GetComponent<Guy>().GuyId));
+    }
 
+    void Start() {
         if (Settings.Instance.DebugMode) {
             foreach (GameObjectWeight entry in _debugGuyData) {
                 _guyRoller.Add(entry.obj, entry.weight);
@@ -45,9 +49,7 @@ public class GameManager : MonoBehaviour {
                 _guyRoller.Add(entry.obj, entry.weight);
             }
         }
-    }
-
-    void Start() {
+        
         LoadHighScores();
     }
 
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour {
         
         Score = 0;
         UIManager.Instance.UpdateScoreText(0);
-        _player.ResetState();
+        Player.ResetState();
     }
 
     #region Guys

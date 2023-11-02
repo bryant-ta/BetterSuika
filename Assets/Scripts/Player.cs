@@ -10,30 +10,28 @@ public class Player : MonoBehaviour {
     [SerializeField] Guy _heldGuy;
     Guy _lastHeldGuy;
     
-    bool _canInput;
+    [HideInInspector] public bool CanInput;
     bool _canDrop;
 
-    AudioSource _dropAudio;
     Camera _mainCamera;
     
     void Awake() {
-        _dropAudio = GetComponent<AudioSource>();
         _mainCamera = Camera.main;
     }
 
     void Start() {
         ReadyNextGuy();
 
-        _canInput = true;
+        CanInput = true;
         _canDrop = true;
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            _canInput = !UIManager.Instance.TogglePauseMenu();
+            UIManager.Instance.TogglePauseMenu();
         }
         
-        if (!_canInput) return;
+        if (!CanInput) return;
         
         // Movement
         if (Settings.Instance.UseMouse) { // Mouse movement
@@ -64,7 +62,7 @@ public class Player : MonoBehaviour {
         _heldGuy.transform.SetParent(null);
         _heldGuy = null;
         
-        _dropAudio.Play();
+        GameManager.Instance.DropSound.Play();
     }
 
     public void ReadyNextGuy() {
@@ -86,7 +84,7 @@ public class Player : MonoBehaviour {
     // prob subscribe to GameManager end game event
     public void ResetState() {
         AllowDrop();
-        _canInput = true;
+        CanInput = true;
         
         ReadyNextGuy();
         ReadyNextGuy(); // Do twice to guarantee load up of two guys
