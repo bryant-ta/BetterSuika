@@ -8,11 +8,16 @@ public class Player : MonoBehaviour {
     float _guyBoundOffset; // based on length of held Guy
 
     [SerializeField] Guy _heldGuy;
-
+    Guy _lastHeldGuy;
+    
     bool _canInput;
     bool _canDrop;
 
-    Guy _lastHeldGuy;
+    AudioSource _dropAudio;
+
+    void Awake() {
+        _dropAudio = GetComponent<AudioSource>();
+    }
 
     void Start() {
         ReadyNextGuy();
@@ -46,12 +51,13 @@ public class Player : MonoBehaviour {
         _lastHeldGuy = _heldGuy;
         _canDrop = false;
         _lastHeldGuy.OnLanded += AllowDrop;
+        _lastHeldGuy.OnLanded += ReadyNextGuy;
         
         _heldGuy.Drop();
         _heldGuy.transform.SetParent(null);
         _heldGuy = null;
         
-        ReadyNextGuy();
+        _dropAudio.Play();
     }
 
     public void ReadyNextGuy() {
@@ -65,6 +71,7 @@ public class Player : MonoBehaviour {
         _canDrop = true;
         if (_lastHeldGuy) {
             _lastHeldGuy.OnLanded -= AllowDrop;
+            _lastHeldGuy.OnLanded -= ReadyNextGuy;
             _lastHeldGuy = null;
         }
     }

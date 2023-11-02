@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour {
     public int Score { get; private set; }
     List<int> _highScores = new();
     HighScoreManager _hsm = new();
+    
+    // Sound
+    public AudioSource CombineSound; // TEMP: placed here since Guy gets destroyed -> stops combine sound
 
     void Awake() {
         if (Instance != null && Instance != this) {

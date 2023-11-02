@@ -12,7 +12,9 @@ public class Guy : MonoBehaviour {
     public bool Haslanded; // used when checking out of bounds
     public Action OnLanded;
 
-    void Awake() { _rb = GetComponent<Rigidbody2D>(); }
+    void Awake() {
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     // Return true if successfully combined
     public void TryCombine(Guy otherGuy) {
@@ -31,8 +33,11 @@ public class Guy : MonoBehaviour {
                 
                 // Gain points
                 GameManager.Instance.AddScore(_scoreValue * 2); // adding both Guy scores
+                
+                GameManager.Instance.CombineSound.Play();
             }
             
+            // gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }
