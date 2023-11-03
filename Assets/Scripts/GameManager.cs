@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         } else {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         // Ensure guy data is sorted since LookUpHigherGuyObj() relies on index position
