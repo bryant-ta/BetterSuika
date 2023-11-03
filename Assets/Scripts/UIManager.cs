@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour {
     [SerializeField] TextMeshProUGUI _secondPlaceScoreText;
     [SerializeField] TextMeshProUGUI _thirdPlaceScoreText;
 
+    [SerializeField] GameObject _mainMenuPanel;
+    [SerializeField] GameObject _mainMenuSettingsPanel;
+    
     [SerializeField] GameObject _pauseMenuPanel;
     [SerializeField] GameObject _settingsPanel;
     
@@ -45,6 +48,14 @@ public class UIManager : MonoBehaviour {
         if (!GameManager.Instance.LostGame) {
             GameManager.Instance.Player.CanInput = !_pauseMenuPanel.activeSelf;
         }
+    }
+
+    public void OnStartGameButtonClicked() {
+        _mainMenuPanel.SetActive(false);
+        GameManager.Instance.Player.CanInput = true;
+    }
+    public void OnMainMenuSettingsButtonClicked() {
+        _mainMenuSettingsPanel.SetActive(!_mainMenuSettingsPanel.activeSelf);
     }
     
     public void OnReturnButtonClicked() {

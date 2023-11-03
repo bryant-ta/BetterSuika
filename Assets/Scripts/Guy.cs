@@ -6,6 +6,10 @@ public class Guy : MonoBehaviour {
     public int GuyId;
     [SerializeField] int _scoreValue;
 
+    [Tooltip("Manually set player clamp offset from holding this Guy.")]
+    [SerializeField] float _radius;
+    public float Radius => _radius;
+
     Rigidbody2D _rb;
 
     bool _isCombined;                            // used so combine func doesnt get called twice, from the two guys involved in collision

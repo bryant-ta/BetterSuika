@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     [SerializeField] float _moveSpeed = 5f;
-    [SerializeField] float _leftBoundBase;
-    [SerializeField] float _rightBoundBase;
+    [SerializeField] float _boundBase;
     float _guyBoundOffset; // based on length of held Guy
 
     [SerializeField] Guy _heldGuy;
@@ -22,7 +21,7 @@ public class Player : MonoBehaviour {
     void Start() {
         ReadyNextGuy();
 
-        CanInput = true;
+        CanInput = false;
         _canDrop = true;
     }
 
@@ -44,7 +43,7 @@ public class Player : MonoBehaviour {
         }
         
         // Keep in bounds
-        float positionX = Mathf.Clamp(transform.position.x, _leftBoundBase + _guyBoundOffset, _rightBoundBase - _guyBoundOffset);
+        float positionX = Mathf.Clamp(transform.position.x, -_boundBase + _guyBoundOffset, _boundBase - _guyBoundOffset);
         transform.position = new Vector3(positionX, transform.position.y, transform.position.z);
 
         if (_canDrop && Input.GetButton("Fire1")) {
@@ -69,7 +68,7 @@ public class Player : MonoBehaviour {
         _heldGuy = GameManager.Instance.GetNextGuy();
         _heldGuy.transform.SetParent(transform);
         _heldGuy.transform.localPosition = Vector3.zero;
-        // _guyBoundOffset = _heldGuy.GetComponent<CircleCollider2D>().radius * _heldGuy.transform.localScale.x;
+        _guyBoundOffset = _heldGuy.Radius * _heldGuy.transform.localScale.x;
     }
 
     void AllowDrop() {
