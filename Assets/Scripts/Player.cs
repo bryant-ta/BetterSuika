@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     [SerializeField] float _moveSpeed = 5f;
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour {
     Guy _lastHeldGuy;
     
     [HideInInspector] public bool CanInput;
+    [HideInInspector] public bool IgnoreOneReleaseInput; // dirty way to fix click from buttons also triggering dropping guy
     bool _canDrop;
 
     Camera _mainCamera;
@@ -46,7 +48,12 @@ public class Player : MonoBehaviour {
         float positionX = Mathf.Clamp(transform.position.x, -_boundBase + _guyBoundOffset, _boundBase - _guyBoundOffset);
         transform.position = new Vector3(positionX, transform.position.y, transform.position.z);
 
-        if (_canDrop && Input.GetButton("Fire1")) {
+        if (_canDrop && ((Input.GetButtonUp("Fire1") && Settings.Instance.ReleaseToDrop) || (Input.GetButton("Fire1") && !Settings.Instance.ReleaseToDrop))) {
+            if (IgnoreOneReleaseInput) { // dirty way to fix click from buttons also triggering dropping guy
+                IgnoreOneReleaseInput = false;
+                return;
+            }
+            
             DropGuy();
         }
     }

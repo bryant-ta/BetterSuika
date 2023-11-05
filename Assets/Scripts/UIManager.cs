@@ -45,6 +45,7 @@ public class UIManager : MonoBehaviour {
 
     public void TogglePauseMenu() {
         _pauseMenuPanel.SetActive(!_pauseMenuPanel.activeSelf);
+        GameManager.Instance.Player.IgnoreOneReleaseInput = true;
         if (!GameManager.Instance.LostGame) {
             GameManager.Instance.Player.CanInput = !_pauseMenuPanel.activeSelf;
         }
@@ -52,8 +53,10 @@ public class UIManager : MonoBehaviour {
 
     public void OnStartGameButtonClicked() {
         _mainMenuPanel.SetActive(false);
+        GameManager.Instance.Player.IgnoreOneReleaseInput = true;
         GameManager.Instance.Player.CanInput = true;
     }
+    
     public void OnMainMenuSettingsButtonClicked() {
         _mainMenuSettingsPanel.SetActive(!_mainMenuSettingsPanel.activeSelf);
     }
