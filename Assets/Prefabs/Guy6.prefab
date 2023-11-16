@@ -11,10 +11,6 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: c65b9e0300021b54fa70dc6d4c6f1e5d, type: 2}
-    - target: {fileID: 1855894075239412398, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1855894075239412399, guid: 863a05572c6fa334c8b2e42a477392a6, type: 3}
       propertyPath: m_Name
       value: Guy6
