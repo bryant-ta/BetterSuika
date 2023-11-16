@@ -1,4 +1,4 @@
-# dim-sum-game
+# Dim Sum Game
 A Suika Game clone but with cute dim sum foods (and an onigiri...).
 
 ## Play
