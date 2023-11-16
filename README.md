@@ -7,8 +7,19 @@ Mobile (Web) - https://jaayced.itch.io/dim-sum-game-mobileish
 
 I initially wanted to make this as Suika Game but without the annoying edge teleport glitch. --- and I introduced a new glitch instead :) now its a feature.
 
-## Screenshots
-![Screenshot 1]https://github.com/bryant-ta/dim-sum-game/tree/main/Demo?raw=true)
+## Final Screenshots
+![](https://github.com/bryant-ta/dim-sum-game/blob/main/Demo/4.PNG?raw=true)
+
+![](https://github.com/bryant-ta/dim-sum-game/blob/main/Demo/5.PNG?raw=true)
+
+![](https://github.com/bryant-ta/dim-sum-game/blob/main/Demo/6.PNG?raw=true)
+
+## Random Dev Stuff
+![](https://github.com/bryant-ta/dim-sum-game/blob/main/Demo/1.PNG?raw=true)
+
+![](https://github.com/bryant-ta/dim-sum-game/blob/main/Demo/2.PNG?raw=true)
+
+![](https://github.com/bryant-ta/dim-sum-game/blob/main/Demo/2.gif?raw=true)
 
 ---
 
